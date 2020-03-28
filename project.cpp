@@ -16,14 +16,12 @@ class ImageNode
 class ImageLinkedList:public ImageNode
 {
 	ImageNode *listptr,*temp;
-	ImageNode *listptr1,*temp1;
+
 	public:
 		 ImageLinkedList()
 		 {
 		 	listptr=NULL;
 		 	temp=NULL;
-		 	listptr1=NULL;
-		 	temp1=NULL;
 		 }
 	void create();
 	void display();
