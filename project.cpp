@@ -35,26 +35,25 @@ void ImageLinkedList::create()
 	int a;
 	cout<<"Node Count: ";
 	cin>>a;
-	for(int i=0;i<a;i++)
-	{
-	ImageNode *newnode=new ImageNode;
-	cout<<"path "<<i+1<<":";
-	cin>>n;
-    
-   newnode->data=n;
-   newnode->next=NULL;
+	for(int i=0;i<a;i++){
+		ImageNode *newnode=new ImageNode;
+		cout<<"Path: "<<i+1<<":";
+		cin>>n;
+		
+		newnode->data=n;
+		newnode->next=NULL;
 
-   if(listptr==NULL)
-   {
-   	listptr=newnode;
-   	temp=newnode;
-   }
-   else
-   {
-   	temp->next=newnode;
-   	temp=temp->next;
-   }
-}
+		if(listptr==NULL)
+		{
+			listptr=newnode;
+			temp=newnode;
+		}
+		else
+		{
+			temp->next=newnode;
+			temp=temp->next;
+		}
+	}//for ends
 }
 void ImageLinkedList::display()
 {
