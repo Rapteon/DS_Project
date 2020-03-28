@@ -1,5 +1,8 @@
 #include<iostream>
+#include<filesystem>
 using namespace std;	
+
+namespace fs = std::filesystem;
 
 class ImageNode
 {
@@ -13,6 +16,7 @@ class ImageNode
 		this->data = data;
 	}
 };
+
 class ImageLinkedList:public ImageNode
 {
 	ImageNode *listptr,*temp;
@@ -27,6 +31,7 @@ class ImageLinkedList:public ImageNode
 		 }
 	void create();
 	void display();
+	void displayImage(string str);
 	void insert();
 	void del();
 };
@@ -170,10 +175,25 @@ void ImageLinkedList::insert()
 	}
 }
 
-   
+void ImageLinkedList::displayImage(string str){
+    const string program = "feh ";
+    string fullCommand = program+str;
+    const char * toUse = fullCommand.c_str();
+    if(system(NULL)){
+        fputs("OK", stdout);
+		system(toUse);
+	}
+	else{
+		cout<<"Could not open shell.\n";
+		exit(EXIT_FAILURE);
+	}
+    //Debugging Code.
+    // system("feh /home/jarus/Wallpapers/ml-wallpaper-13.jpg");
+}
+
 int main() 
 {
-	int m;;
+	int m;
 	ImageLinkedList b;
 	int p;
 	while(1){
@@ -195,10 +215,7 @@ int main()
 	    		cout<<"Invalid option. Please retry.\n";
 			}
 			break;
-	    
-			
 	}
-	
 }
 }
 
