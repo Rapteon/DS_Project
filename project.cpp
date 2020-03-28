@@ -72,12 +72,13 @@ void ImageLinkedList::display()
 		return;
 	}
 	cout<<"Stored Images :\n";
-	while(temp->next!=NULL)
+	while(temp!=NULL)
 	{
-		cout<<    temp->data    <<"\t";
+		cout<<    temp->data    <<"\n";
+		displayImage(temp->data);
 		temp=temp->next;
 	}
-	cout<<    temp->data<<"\t"<<"\n";
+	// cout<<    temp->data<<"\t"<<"\n";
 }
 void ImageLinkedList::insert()
 {
@@ -180,13 +181,13 @@ void ImageLinkedList::displayImage(string str){
     string fullCommand = program+str;
     const char * toUse = fullCommand.c_str();
     if(system(NULL)){
-        fputs("OK", stdout);
-		system(toUse);
+        fputs("OK\n", stdout);
 	}
 	else{
 		cout<<"Could not open shell.\n";
 		exit(EXIT_FAILURE);
 	}
+	system(toUse);
     //Debugging Code.
     // system("feh /home/jarus/Wallpapers/ml-wallpaper-13.jpg");
 }
@@ -196,27 +197,29 @@ int main()
 	int m;
 	ImageLinkedList b;
 	int p;
-	while(1){
-	cout<<"Options:\n 1.create \n 2.display  \n 3.insert \n";
-	cin>>p;
-	switch(p)
-	{
-		case 1:
-			b.create();
-			break;
-		case 2:
-			b.display();
-			break;
-	    case 3:
-	    	b.insert();
-	    	break;
-	    default :
-	    	{
-	    		cout<<"Invalid option. Please retry.\n";
-			}
-			break;
+	char continueChoice = 'Y';
+	while(continueChoice == 'Y' || continueChoice == 'y'){
+		cout<<"Options:\n 1.create \n 2.display  \n 3.insert \n";
+		cin>>p;
+		switch(p)
+		{
+			case 1:
+				b.create();
+				break;
+			case 2:
+				b.display();
+				break;
+			case 3:
+				b.insert();
+				break;
+			default :
+				{
+					cout<<"Invalid option. Please retry.\n";
+				}
+		}
+		cout<<"Continue? [Y/n] : ";
+		cin>>continueChoice;
 	}
-}
 }
 
 
