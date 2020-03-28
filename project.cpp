@@ -61,7 +61,7 @@ void ImageLinkedList::display()
 	ImageNode *temp=listptr;
 	if(listptr==NULL)
 	{
-		cout<<"sorry no images are available \n";
+		cout<<"Sorry. No images are available.\n";
 		return;
 	}
 	cout<<"Stored Images :\n";
@@ -76,7 +76,7 @@ void ImageLinkedList::insert()
 {
 	int x;
 	string n;
-	cout<<"Available options : \n 1.begining \n 2.end \n 3.other\n";
+	cout<<"Insert At: \n 1.begining \n 2.end \n 3.other\n";
 	cin>>x;
 	switch(x)
 	{
@@ -84,7 +84,7 @@ void ImageLinkedList::insert()
 			 {
 			 	cout<<"begining\n";
 			 	ImageNode *newnode=new ImageNode;
-			 	cout<<"enter a filename : ";
+			 	cout<<"filename: ";
 	            cin>>n;
     
                  newnode->data=n;
@@ -106,13 +106,13 @@ void ImageLinkedList::insert()
 	    	{
 	    		cout<<"end\n";
 	    		 ImageNode *newnode=new ImageNode;
-	    		 cout<<"enter a filename : ";
+	    		 cout<<"filename: ";
 	              cin>>n;
 	              newnode->data=n;
                  newnode->next=NULL;
 	    		 if(listptr==NULL)
 			 	{
-			 		cout<<"no photos found, new photo is inserted at 1st place \n";
+			 		cout<<"No photos found. New photo inserted at 1st place\n";
 			 		listptr=newnode;
 			 		temp =newnode;
 			 	}
@@ -131,16 +131,16 @@ void ImageLinkedList::insert()
 	    		int i=1;
 	    		 ImageNode *newnode=new ImageNode;
 	    		 ImageNode *temp;
-	    		 cout<<"where you would like to add the image\n";
+	    		 cout<<"Position: ";
 	    		 cin>>pos;
-	    		 cout<<"enter a filename  : ";
+	    		 cout<<"filename: ";
 	            cin>>n;
     
                  newnode->data=n;
                  newnode->next=NULL;
 	    		  if(listptr==NULL)
 			 	{
-			 		cout<<"no photos found, new photo is inserted at 1st place\n";
+			 		cout<<"No photos found. New photo inserted at 1st place\n";
 			 		listptr=newnode;
 			 		temp =newnode;
 			 	}
@@ -175,7 +175,7 @@ int main()
 	ImageLinkedList b;
 	int p;
 	while(1){
-	cout<<"Options: \n 1.create \n 2.display  \n 3.insert \n";
+	cout<<"Options:\n 1.create \n 2.display  \n 3.insert \n";
 	cin>>p;
 	switch(p)
 	{
@@ -190,7 +190,7 @@ int main()
 	    	break;
 	    default :
 	    	{
-	    		cout<<"you made a wrong choose \n please select the correct one \n";
+	    		cout<<"Invalid option. Please retry.\n";
 			}
 			break;
 	    
