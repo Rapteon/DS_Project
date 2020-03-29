@@ -162,7 +162,7 @@ void ImageLinkedList::insert()
 			 	}
 			 	if(i<pos-1)
 			 	{
-			 		cout<<"out of range \n";
+			 		cout<<"Out of range.\n";
 			 	}
 			 	else
 			 	{
@@ -199,7 +199,7 @@ int main()
 	int p;
 	char continueChoice = 'Y';
 	while(continueChoice == 'Y' || continueChoice == 'y'){
-		cout<<"Options:\n 1.create \n 2.display  \n 3.insert \n";
+		cout<<"Options:\n 1.Create\n2.Display\n 3.Insert\n";
 		cin>>p;
 		switch(p)
 		{
