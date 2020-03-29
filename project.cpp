@@ -202,9 +202,10 @@ string ImageLinkedList::search(string strr)
 }
 
 void ImageLinkedList::displayImage(string str){
-    const string program = "feh ";
+    string program = "./displayScript.sh ";
     string fullCommand = program+str;
-    const char * toUse = fullCommand.c_str();
+	cout<<fullCommand<<"\n";
+    // const char * toUse = fullCommand.c_str();
     if(system(NULL)){
         fputs("OK\n", stdout);
 	}
@@ -212,7 +213,7 @@ void ImageLinkedList::displayImage(string str){
 		cout<<"Could not open shell.\n";
 		exit(EXIT_FAILURE);
 	}
-	system(toUse);
+	system(fullCommand.c_str());
     //Debugging Code.
     // system("feh /home/jarus/Wallpapers/ml-wallpaper-13.jpg");
 }
