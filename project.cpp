@@ -1,4 +1,6 @@
 #include<iostream>
+#include<regex>
+
 using namespace std;	
 
 class ImageNode
@@ -31,6 +33,7 @@ class ImageLinkedList:public ImageNode
 	void displayImage(string str);
 	void insert();
 	void del();
+	string search(string strr);
 };
 void ImageLinkedList::create()
 {
@@ -173,6 +176,31 @@ void ImageLinkedList::insert()
 	}
 }
 
+string ImageLinkedList::search(string strr)
+	{
+	    ImageNode *temp=listptr;
+	    while(temp!=NULL)
+	    {
+	       string s=temp->data;
+  
+        
+            regex r(strr); 
+            smatch m; 
+            regex_search(s, m, r); 
+            if(m.empty()==true)
+            {if(temp->next!=NULL)
+                temp=temp->next;
+            else
+                return "Not Found.";
+            }
+            else
+            {
+                return s;
+            }
+	    }
+        return NULL;
+}
+
 void ImageLinkedList::displayImage(string str){
     const string program = "feh ";
     string fullCommand = program+str;
@@ -194,9 +222,10 @@ int main()
 	int m;
 	ImageLinkedList b;
 	int p;
+	string s, fd;
 	char continueChoice = 'Y';
 	while(continueChoice == 'Y' || continueChoice == 'y'){
-		cout<<"Options:\n 1.Create\n 2.Display\n 3.Insert\n";
+		cout<<"Options:\n 1.Create\n 2.Display\n 3.Insert\n 4.Search\n";
 		cin>>p;
 		switch(p)
 		{
@@ -208,6 +237,13 @@ int main()
 				break;
 			case 3:
 				b.insert();
+				break;
+			case 4:
+				cout<<"Enter the Name of the Image: ";
+				cin>>s;
+				fd=b.search(s);
+				cout<<"The link is ";
+				cout<<fd<<"\n";
 				break;
 			default :
 				{
