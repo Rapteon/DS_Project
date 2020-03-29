@@ -196,7 +196,7 @@ int main()
 	int p;
 	char continueChoice = 'Y';
 	while(continueChoice == 'Y' || continueChoice == 'y'){
-		cout<<"Options:\n 1.Create \n2.Display \n 3.Insert\n";
+		cout<<"Options:\n 1.Create\n 2.Display\n 3.Insert\n";
 		cin>>p;
 		switch(p)
 		{
