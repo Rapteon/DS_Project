@@ -239,7 +239,6 @@ string ImageLinkedList::search(string strr)
 void ImageLinkedList::displayImage(string str){
     string program = "./displayScript.sh ";
     string fullCommand = program+str;
-	cout<<fullCommand<<"\n";
     if(system(NULL)){
         fputs("OK\n", stdout);
 	}
