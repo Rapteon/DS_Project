@@ -283,6 +283,7 @@ void ImageLinkedList::filter(string filepath, string newfilepath){
 			fullCommand = program+param;
 			system(fullCommand.c_str());
 			displayImage(newfilepath);
+			break;
 		default:
 			cout<<"Filter doesn't exist.";
 	}
@@ -301,13 +302,24 @@ int main()
 	int m;
 	ImageLinkedList b;
 	int p;
-	string s, fd;
+	string s, fd, empty="NULL";
 	char continueChoice = 'Y';
 	while(continueChoice == 'Y' || continueChoice == 'y'){
-		cout<<"Options:\n 1.Create\n 2.Display\n 3.Insert\n 4.Search\n 5.Delete\n";
+		cout<<"Options:\n 0.Open\n 1.CreateAlbum\n 2.Slideshow\n 3.AddImage\n 4.Search\n 5.Delete\n 6.ApplyFilter\n";
 		cin>>p;
 		switch(p)
 		{
+			case 0:
+				cout<<"filename: ";
+				cin>>s;
+				cout<<"Enter duration to keep open: ";
+				cin>>m;
+				fd = b.search(s);
+				if(strcmp(empty.c_str(), fd.c_str()) == 0)
+					cout<<"File not in album.\n";
+				else
+					open(fd, m);
+				break;
 			case 1:
 				b.create();
 				break;
@@ -321,11 +333,23 @@ int main()
 				cout<<"Enter the Name of the Image: ";
 				cin>>s;
 				fd=b.search(s);
-				cout<<"The link is ";
-				cout<<fd<<"\n";
+				if(strcasecmp(empty.c_str(), fd.c_str())){
+					cout<<"The link is ";
+					cout<<fd<<"\n";
+				}
+				else
+					cout<<"Not found.\n";
 				break;
 			case 5:
 				b.del();
+				break;
+			case 6:
+				cout<<"Enter the Name of the Image: ";
+				cin>>s;
+				fd=b.search(s);
+				cout<<"New Absolute Path: ";
+				cin>>s;
+				b.filter(fd, s);
 				break;
 			default :
 				{
