@@ -4,9 +4,8 @@
 for i in "$@"
 do
 	echo "Path = $i"
-	exec $(magick display $i) & 
+	exec $(feh $i) & 
 	sleep 3
 	echo "$pid"
-	$(pkill magick)
+	$(pkill feh)
 done
-
