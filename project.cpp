@@ -93,7 +93,7 @@ void ImageLinkedList::insert()
 			 {
 			 	cout<<"begining\n";
 			 	ImageNode *newnode=new ImageNode;
-			 	cout<<"filename: ";
+			 	cout<<"Path: ";
 	            cin>>n;
     
                  newnode->data=n;
@@ -115,7 +115,7 @@ void ImageLinkedList::insert()
 	    	{
 	    		cout<<"end\n";
 	    		 ImageNode *newnode=new ImageNode;
-	    		 cout<<"filename: ";
+	    		 cout<<"Path: ";
 	              cin>>n;
 	              newnode->data=n;
                  newnode->next=NULL;
