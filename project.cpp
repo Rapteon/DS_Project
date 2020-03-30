@@ -282,7 +282,7 @@ void ImageLinkedList::filter(string filepath, string newfilepath){
 			break;
 		case 4:
 			program = "magick -monitor ";
-			param = filepath+" "+"-spread 50 "+newfilepath;
+			param = filepath+" "+"-spread 10 "+newfilepath;
 			fullCommand = program+param;
 			system(fullCommand.c_str());
 			displayImage(newfilepath);
