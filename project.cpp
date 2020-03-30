@@ -77,7 +77,6 @@ void ImageLinkedList::display()
 		displayImage(temp->data);
 		temp=temp->next;
 	}
-	// cout<<    temp->data<<"\t"<<"\n";
 }
 void ImageLinkedList::insert()
 {
@@ -240,7 +239,6 @@ void ImageLinkedList::displayImage(string str){
     string program = "./displayScript.sh ";
     string fullCommand = program+str;
 	cout<<fullCommand<<"\n";
-    // const char * toUse = fullCommand.c_str();
     if(system(NULL)){
         fputs("OK\n", stdout);
 	}
@@ -249,8 +247,6 @@ void ImageLinkedList::displayImage(string str){
 		exit(EXIT_FAILURE);
 	}
 	system(fullCommand.c_str());
-    //Debugging Code.
-    // system("feh /home/jarus/Wallpapers/ml-wallpaper-13.jpg");
 }
 
 void ImageLinkedList::filter(string filepath, string newfilepath){
