@@ -285,7 +285,7 @@ void ImageLinkedList::filter(string filepath, string newfilepath){
 			system(fullCommand.c_str());
 			displayImage(newfilepath);
 		default:
-			cout<<"Something";
+			cout<<"Filter doesn't exist.";
 	}
 }
 
