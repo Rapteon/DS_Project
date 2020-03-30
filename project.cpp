@@ -252,7 +252,7 @@ void ImageLinkedList::displayImage(string str){
 void ImageLinkedList::filter(string filepath, string newfilepath){
 	string program, param, fullCommand;
 	int c;
-	cout<<"Choose Filter : \n 1.Monochrome\n 2.Solarize\n 3.Negate\n 4.Spread\n";
+	cout<<"Choose Filter : \n 1.Monochrome\n 2.Solarize\n 3.Redden\n 4.Spread\n";
 	cin>>c;
 
 	switch(c){
