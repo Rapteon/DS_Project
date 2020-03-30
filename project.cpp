@@ -1,5 +1,6 @@
 #include<iostream>
 #include<regex>
+#include<unistd.h>
 
 using namespace std;	
 
@@ -35,6 +36,7 @@ class ImageLinkedList:public ImageNode
 	void del();
 	string search(string strr);
 	void filter(string filename, string newfilename);
+	friend void open(string, int);
 };
 void ImageLinkedList::create()
 {
@@ -79,7 +81,6 @@ void ImageLinkedList::display()
 		displayImage(temp->data);
 		temp=temp->next;
 	}
-	// cout<<    temp->data<<"\t"<<"\n";
 }
 void ImageLinkedList::insert()
 {
@@ -228,21 +229,20 @@ string ImageLinkedList::search(string strr)
             {if(temp->next!=NULL)
                 temp=temp->next;
             else
-                return "Not Found.";
+                return "NULL";
             }
             else
             {
                 return s;
             }
 	    }
-        return NULL;
+        return "NULL";
 }
 
 void ImageLinkedList::displayImage(string str){
     string program = "./displayScript.sh ";
     string fullCommand = program+str;
 	cout<<fullCommand<<"\n";
-    // const char * toUse = fullCommand.c_str();
     if(system(NULL)){
         fputs("OK\n", stdout);
 	}
@@ -251,8 +251,6 @@ void ImageLinkedList::displayImage(string str){
 		exit(EXIT_FAILURE);
 	}
 	system(fullCommand.c_str());
-    //Debugging Code.
-    // system("feh /home/jarus/Wallpapers/ml-wallpaper-13.jpg");
 }
 
 void ImageLinkedList::filter(string filepath, string newfilepath){
@@ -278,7 +276,7 @@ void ImageLinkedList::filter(string filepath, string newfilepath){
 			break;
 		case 3:
 			program = "magick -monitor ";
-			param = filepath+" "+"-solarize "+newfilepath;
+			param = filepath+" "+"-negate "+newfilepath;
 			fullCommand = program+param;
 			system(fullCommand.c_str());
 			displayImage(newfilepath);
@@ -290,22 +288,40 @@ void ImageLinkedList::filter(string filepath, string newfilepath){
 			system(fullCommand.c_str());
 			displayImage(newfilepath);
 		default:
-			cout<<"Something";
+			cout<<"Filter doesn't exist.";
 	}
 }
 
+void open(string s, int delay){
+	string program = "./timedDisplay.sh ";
+	string duration = to_string(delay);
+	string fullCommand = program+" '"+s+"' "+duration;
+	cout<<fullCommand<<"\n";
+	system(fullCommand.c_str());
+}
 int main() 
 {
 	int m;
 	ImageLinkedList b;
 	int p;
-	string s, fd;
+	string s, fd, empty="NULL";
 	char continueChoice = 'Y';
 	while(continueChoice == 'Y' || continueChoice == 'y'){
-		cout<<"Options:\n 1.Create\n 2.Display\n 3.Insert\n 4.Search\n 5.Delete\n";
+		cout<<"Options:\n 0.Open\n 1.CreateAlbum\n 2.Slideshow\n 3.AddImage\n 4.Search\n 5.Delete\n 6.ApplyFilter\n";
 		cin>>p;
 		switch(p)
 		{
+			case 0:
+				cout<<"filename: ";
+				cin>>s;
+				cout<<"Enter duration to keep open: ";
+				cin>>m;
+				fd = b.search(s);
+				if(strcasecmp(empty.c_str(), fd.c_str()) == 0)
+					cout<<"File not in album.\n";
+				else
+					open(fd, m);
+				break;
 			case 1:
 				b.create();
 				break;
@@ -325,6 +341,14 @@ int main()
 			case 5:
 				b.del();
 				break;
+			case 6:
+				cout<<"Enter the Name of the Image: ";
+				cin>>s;
+				fd=b.search(s);
+				cout<<"New Absolute Path: ";
+				cin>>s;
+				b.filter(fd, s);
+				break;
 			default :
 				{
 					cout<<"Invalid option. Please retry.\n";
@@ -333,7 +357,6 @@ int main()
 		cout<<"Continue? [Y/n] : ";
 		cin>>continueChoice;
 	}
-	b.filter("/home/jarus/pawel.jpg", "./out.jpg");
 }
 
 
