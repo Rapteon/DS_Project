@@ -33,6 +33,7 @@ class ImageLinkedList:public ImageNode
 	void del();
 	string search(string strr);
 	void filter(string filename, string newfilename);
+	friend void open(string, int);
 };
 void ImageLinkedList::create()
 {
@@ -286,6 +287,14 @@ void ImageLinkedList::filter(string filepath, string newfilepath){
 		default:
 			cout<<"Something";
 	}
+}
+
+void open(string s, int delay){
+	string program = "./timedDisplay.sh ";
+	string duration = to_string(delay);
+	string fullCommand = program+" '"+s+"' "+duration;
+	cout<<fullCommand<<"\n";
+	system(fullCommand.c_str());
 }
 
 int main() 
