@@ -226,14 +226,14 @@ string ImageLinkedList::search(string strr)
             {if(temp->next!=NULL)
                 temp=temp->next;
             else
-                return "Not Found.";
+                return "NULL";
             }
             else
             {
                 return s;
             }
 	    }
-        return NULL;
+        return "NULL";
 }
 
 void ImageLinkedList::displayImage(string str){
