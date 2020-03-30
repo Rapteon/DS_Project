@@ -327,7 +327,6 @@ int main()
 		cout<<"Continue? [Y/n] : ";
 		cin>>continueChoice;
 	}
-	b.filter("/home/jarus/pawel.jpg", "./out.jpg");
 }
 
 
