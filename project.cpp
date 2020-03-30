@@ -272,7 +272,7 @@ void ImageLinkedList::filter(string filepath, string newfilepath){
 			break;
 		case 3:
 			program = "magick -monitor ";
-			param = filepath+" "+"-solarize "+newfilepath;
+			param = filepath+" "+"-channel r -level 0x50% +channel "+newfilepath;
 			fullCommand = program+param;
 			system(fullCommand.c_str());
 			displayImage(newfilepath);
