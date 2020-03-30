@@ -34,6 +34,7 @@ class ImageLinkedList:public ImageNode
 	void insert();
 	void del();
 	string search(string strr);
+	void filter(string filename, string newfilename);
 };
 void ImageLinkedList::create()
 {
@@ -176,6 +177,42 @@ void ImageLinkedList::insert()
 	}
 }
 
+void ImageLinkedList::del()
+{
+	int k=0;
+	string n;
+	cout<<"Enter Image Path to be Deleted : ";
+	cin>>n;
+	ImageNode * temp;
+	ImageNode * q;
+	temp=listptr;
+	if(temp->data==n)
+	{
+		listptr=listptr->next;
+		delete temp;
+		cout<<"\nImagenode Deleted Sucessfully\n\n";
+		k++;
+	}
+	else
+	{
+		while(temp->next!=NULL)
+		{
+			if(temp->next->data==n)
+			{
+				q=temp->next;
+				temp->next=q->next;
+				delete q;
+				k++;
+				cout<<"\nImageNode Deleted Sucessfully\n\n";
+				break;
+			}
+			temp=temp->next;
+		}
+	}
+	if(k==0)
+	cout<<"ImageNode not Found in the LIST\n";
+}
+
 string ImageLinkedList::search(string strr)
 	{
 	    ImageNode *temp=listptr;
@@ -218,6 +255,45 @@ void ImageLinkedList::displayImage(string str){
     // system("feh /home/jarus/Wallpapers/ml-wallpaper-13.jpg");
 }
 
+void ImageLinkedList::filter(string filepath, string newfilepath){
+	string program, param, fullCommand;
+	int c;
+	cout<<"Choose Filter : \n 1.Monochrome\n 2.Solarize\n 3.Negate\n 4.Spread\n";
+	cin>>c;
+
+	switch(c){
+		case 1:
+			program = "magick -monitor ";
+			param = filepath+" "+"-monochrome "+newfilepath;
+			fullCommand = program+param;
+			system(fullCommand.c_str());
+			displayImage(newfilepath);
+			break;
+		case 2:
+			program = "magick -monitor ";
+			param = filepath+" "+"-solarize 40 "+newfilepath;
+			fullCommand = program+param;
+			system(fullCommand.c_str());
+			displayImage(newfilepath);
+			break;
+		case 3:
+			program = "magick -monitor ";
+			param = filepath+" "+"-solarize "+newfilepath;
+			fullCommand = program+param;
+			system(fullCommand.c_str());
+			displayImage(newfilepath);
+			break;
+		case 4:
+			program = "magick -monitor ";
+			param = filepath+" "+"-spread 50 "+newfilepath;
+			fullCommand = program+param;
+			system(fullCommand.c_str());
+			displayImage(newfilepath);
+		default:
+			cout<<"Something";
+	}
+}
+
 int main() 
 {
 	int m;
@@ -226,7 +302,7 @@ int main()
 	string s, fd;
 	char continueChoice = 'Y';
 	while(continueChoice == 'Y' || continueChoice == 'y'){
-		cout<<"Options:\n 1.Create\n 2.Display\n 3.Insert\n 4.Search\n";
+		cout<<"Options:\n 1.Create\n 2.Display\n 3.Insert\n 4.Search\n 5.Delete\n";
 		cin>>p;
 		switch(p)
 		{
@@ -246,6 +322,9 @@ int main()
 				cout<<"The link is ";
 				cout<<fd<<"\n";
 				break;
+			case 5:
+				b.del();
+				break;
 			default :
 				{
 					cout<<"Invalid option. Please retry.\n";
@@ -254,6 +333,7 @@ int main()
 		cout<<"Continue? [Y/n] : ";
 		cin>>continueChoice;
 	}
+	b.filter("/home/jarus/pawel.jpg", "./out.jpg");
 }
 
 
