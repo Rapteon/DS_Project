@@ -316,7 +316,7 @@ int main()
 				cout<<"Enter duration to keep open: ";
 				cin>>m;
 				fd = b.search(s);
-				if(strcasecmp(empty.c_str(), fd.c_str()) == 0)
+				if(strcmp(empty.c_str(), fd.c_str()) == 0)
 					cout<<"File not in album.\n";
 				else
 					open(fd, m);
@@ -334,8 +334,12 @@ int main()
 				cout<<"Enter the Name of the Image: ";
 				cin>>s;
 				fd=b.search(s);
-				cout<<"The link is ";
-				cout<<fd<<"\n";
+				if(strcasecmp(empty.c_str(), fd.c_str())){
+					cout<<"The link is ";
+					cout<<fd<<"\n";
+				}
+				else
+					cout<<"Not found.\n";
 				break;
 			case 5:
 				b.del();
