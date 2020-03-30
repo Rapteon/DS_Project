@@ -254,7 +254,7 @@ void ImageLinkedList::displayImage(string str){
 void ImageLinkedList::filter(string filepath, string newfilepath){
 	string program, param, fullCommand;
 	int c;
-	cout<<"Choose Filter : \n 1.Monochrome\n 2.Solarize\n 3.Negate\n 4.Spread\n";
+	cout<<"Choose Filter : \n 1.Monochrome\n 2.Solarize\n 3.Redden\n 4.Spread\n";
 	cin>>c;
 
 	switch(c){
@@ -274,7 +274,7 @@ void ImageLinkedList::filter(string filepath, string newfilepath){
 			break;
 		case 3:
 			program = "magick -monitor ";
-			param = filepath+" "+"-negate "+newfilepath;
+			param = filepath+" "+"-channel r -level 0x50% +channel "+newfilepath;
 			fullCommand = program+param;
 			system(fullCommand.c_str());
 			displayImage(newfilepath);
