@@ -1,7 +1,18 @@
 #include<iostream>
 #include<regex>
+#include <sstream>
 
 using namespace std;	
+
+string convertToString(char* a, int size) 
+{ 
+    int i; 
+    string s = ""; 
+    for (i = 0; i < size; i++) { 
+        s = s + a[i]; 
+    } 
+    return s; 
+}
 
 class ImageNode
 {
@@ -81,21 +92,31 @@ void ImageLinkedList::display()
 }
 void ImageLinkedList::insert()
 {
-	int x;
+	char x;
 	string n;
 	cout<<"Insert At: \n 1.begining \n 2.end \n 3.other\n";
 	cin>>x;
-	switch(x)
+	if(!isdigit(x)){
+			cout<<"Please enter only integers.\n";
+			return;
+	}
+	char kk[1]={x};
+	string k=convertToString(kk, 1); 
+
+	stringstream geek(k);
+	int m = 0; 
+	geek >> m;
+	switch(m)
 	{
 		case 1:
 			 {
 			 	cout<<"begining\n";
 			 	ImageNode *newnode=new ImageNode;
 			 	cout<<"Path: ";
-	            cin>>n;
+				cin>>n;
     
-                 newnode->data=n;
-                 newnode->next=NULL;
+				newnode->data=n;
+				newnode->next=NULL;
 			 	if(listptr==NULL)
 			 	{
 			 		listptr=newnode;
@@ -112,12 +133,12 @@ void ImageLinkedList::insert()
 	    case 2:
 	    	{
 	    		cout<<"end\n";
-	    		 ImageNode *newnode=new ImageNode;
-	    		 cout<<"Path: ";
-	              cin>>n;
-	              newnode->data=n;
-                 newnode->next=NULL;
-	    		 if(listptr==NULL)
+	    		ImageNode *newnode=new ImageNode;
+	    		cout<<"Path: ";
+	            cin>>n;
+	            newnode->data=n;
+                newnode->next=NULL;
+	    		if(listptr==NULL)
 			 	{
 			 		cout<<"No photos found. New photo inserted at 1st place\n";
 			 		listptr=newnode;
@@ -136,16 +157,16 @@ void ImageLinkedList::insert()
 	    		cout<<"other\n";
 	    		int pos;
 	    		int i=1;
-	    		 ImageNode *newnode=new ImageNode;
-	    		 ImageNode *temp;
-	    		 cout<<"Position: ";
-	    		 cin>>pos;
-	    		 cout<<"Path: ";
+				ImageNode *newnode=new ImageNode;
+				ImageNode *temp;
+				cout<<"Position: ";
+				cin>>pos;
+				cout<<"Path: ";
 	            cin>>n;
     
-                 newnode->data=n;
-                 newnode->next=NULL;
-	    		  if(listptr==NULL)
+				newnode->data=n;
+				newnode->next=NULL;
+				if(listptr==NULL)
 			 	{
 			 		cout<<"No photos found. New photo inserted at 1st place\n";
 			 		listptr=newnode;
@@ -251,11 +272,20 @@ void ImageLinkedList::displayImage(string str){
 
 void ImageLinkedList::filter(string filepath, string newfilepath){
 	string program, param, fullCommand;
-	int c;
+	char c;
 	cout<<"Choose Filter : \n 1.Monochrome\n 2.Solarize\n 3.Redden\n 4.Spread\n";
 	cin>>c;
+	if(!isdigit(c)){
+			cout<<"Please enter only integers.\n";
+			return;
+	}
+	char kk[1]={c};
+	string k=convertToString(kk, 1); 
 
-	switch(c){
+	stringstream geek(k);
+	int x = 0; 
+	geek >> x;
+	switch(x){
 		case 1:
 			program = "magick -monitor ";
 			param = filepath+" "+"-monochrome "+newfilepath;
@@ -301,13 +331,23 @@ int main()
 {
 	int m;
 	ImageLinkedList b;
-	int p;
+	char p;
 	string s, fd, empty="NULL";
 	char continueChoice = 'Y';
 	while(continueChoice == 'Y' || continueChoice == 'y'){
 		cout<<"Options:\n 0.Open\n 1.CreateAlbum\n 2.Slideshow\n 3.AddImage\n 4.Search\n 5.Delete\n 6.ApplyFilter\n";
 		cin>>p;
-		switch(p)
+		if(!isdigit(p)){
+			cout<<"Please enter only integers.\n";
+			continue;
+		}
+		char kk[1]={p};
+		string k=convertToString(kk, 1); 
+
+		stringstream geek(k);
+		int x = 0; 
+		geek >> x;
+		switch(x)
 		{
 			case 0:
 				cout<<"filename: ";
@@ -358,7 +398,6 @@ int main()
 		}
 		cout<<"Continue? [Y/n] : ";
 		cin>>continueChoice;
-	}
+		cout<<"cn:"<<continueChoice<<"\n";
+	}//while ends
 }
-
-
