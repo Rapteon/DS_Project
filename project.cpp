@@ -398,6 +398,5 @@ int main()
 		}
 		cout<<"Continue? [Y/n] : ";
 		cin>>continueChoice;
-		cout<<"cn:"<<continueChoice<<"\n";
 	}//while ends
 }
